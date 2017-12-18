@@ -3,7 +3,7 @@ import os
 import requests
 import torch
 
-DATA_PATH = 'data'
+DATA_PATH = '/Users/nmanzini/code/facebook/data'
 
 
 class SifDataset:
@@ -35,7 +35,7 @@ class SifDataset:
 
         print('Loading split {} from {}'.format(split, full_path))
         result = []
-        with open(full_path) as f:
+        with open(full_path,encoding = 'UTF-8') as f:
             for line in f:
                 sentence, label = line.split('\t')
                 label = int(label)

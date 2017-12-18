@@ -21,7 +21,7 @@ logger.addHandler(console)
 
 # Here we load only a small chunk of the embeddings (100k most common words)
 # You can change it if you want
-all_words = set(line.strip() for line in open('all_sst_words.txt'))
+all_words = set(line.strip() for line in open('all_sst_words.txt', encoding = 'UTF-8'))
 emb_dict = EmbeddingsDictionary(word_whitelist=all_words)
 
 data = SifDataset()
@@ -33,7 +33,7 @@ logging.info('Loaded dev, size={}, npos={}'.format(len(dev_exs), sum(dev_labels)
 model = BowModel(emb_dict.emb)
 loss_fn = nn.NLLLoss()
 optimized_params = filter(lambda p: p.requires_grad, model.parameters())
-optimizer = optim.Adam(optimized_params, lr=0.003)
+optimizer = optim.Adam(optimized_params, lr=0.001)
 
 
 def train_epoch():
